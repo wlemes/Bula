@@ -6,18 +6,31 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './fetch-data.component.html'
 })
 export class FetchDataComponent {
-  public forecasts: WeatherForecast[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+  key = '';
+  reverse = false;
+
+  cabecalho = [
+    { nome: 'Nome', exibe: true, label: 'nomeProduto' },
+    { nome: 'Fabricante', exibe: true, label: 'razaoSocial' },
+    { nome: 'Data', exibe: true, label: 'data' },
+    { nome: 'Download', exibe: true, label: '' }];
+
+  itensPorPagina: number = 10;
+
+
+  constructor() {
+  }
+
+
+  filtroCabecalho(): any[] {
+    return this.cabecalho.filter(c => c.exibe === true);
+  }
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 }
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
+
+

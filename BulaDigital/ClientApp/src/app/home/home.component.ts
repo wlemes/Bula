@@ -10,6 +10,17 @@ export class HomeComponent {
   public http: HttpClient;
   public pesquisa: string;
 
+  key = '';
+  reverse = false;
+
+  cabecalho = [
+    { nome: 'Nome', exibe: true, label: 'nomeProduto' },
+    { nome: 'Fabricante', exibe: true, label: 'razaoSocial' },
+    { nome: 'Data', exibe: true, label: 'data' },
+    { nome: 'Download', exibe: true, label: '' }];
+
+  itensPorPagina: number = 10;
+
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
   }
@@ -23,6 +34,13 @@ export class HomeComponent {
   }
 
 
+  filtroCabecalho(): any[] {
+    return this.cabecalho.filter(c => c.exibe === true);
+  }
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
 }
 
 export interface Content {

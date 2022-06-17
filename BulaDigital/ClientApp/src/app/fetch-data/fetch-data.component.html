@@ -1,24 +1,121 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<div class="portlet light borded">
+  <div class="portlet-title">
+    <div class="actions">
+      <div class="input-icon pull-right">
+        <i class="icon-magnifier"></i>
+        <input type="text" class="form-control input-circle" placeholder="Filtrar...." name="filter"
+               [(ngModel)]="filter">
+      </div>
+    </div>
+  </div>
 
-<p>This component demonstrates fetching data from the server.</p>
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+    </div>
+  </div>
+  <!--<div class="form-actions">
+    <div class="dt-buttons pull-left">
+      <a class="dt-button buttons-pdf buttons-html5 btn green btn-outline" tabindex="0"
+         aria-controls="sample_1" data-toggle="modal" data-target="#gerar-pdf"
+         (click)="pdf()"><span>PDF</span></a>
+      <a class="dt-button buttons-excel buttons-html5 btn yellow btn-outline" tabindex="0"
+         aria-controls="sample_1"
+         (click)="excel(cabecalho, preparaListaExcel(listaOrdemServico), 'Ordem')">
+        <span>Excel</span>
+      </a>
+      <div class="btn-group">
+        <a class="btn dark btn-outline dropdown-toggle" tabindex="0"
+           aria-controls="sample_1" data-toggle="dropdown" data-hover="dropdown"
+           data-close-others="true"><span>Colunas</span></a>
+        <ul class="dropdown-menu pull-right">
+          <li *ngFor="let item of cabecalho">
+            <a (click)="item.exibe = !item.exibe; $event.stopPropagation();">
+              {{item.nome}}
+              <i *ngIf="item.exibe" class="fa fa-check"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="pull-right btn-group">
+      <button type="button" class="btn font-white" style="background: #059a19" [routerLink]="['new']">
+        Nova OS
+      </button>
+      <button type="button" class="btn default" [routerLink]="['ordem-servico']">Cancelar</button>
+    </div>
+  </div>-->
+  <div class="portlet-body">
+    <div class="col-md-12">
+      <div class="dataTables_wrapper no-footer">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="dataTables_length">
+              <label>Resultados por página:</label>
+              <select name="itensPorPagina"
+                      class="form-control input-sm input-xsmall input-inline input-circle"
+                      [(ngModel)]="itensPorPagina">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="-1">All</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+          </div>
+        </div>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
-    </tr>
-  </tbody>
-</table>
+        <div>
+          <table class="table table-striped table-hover no-footer" role="grid">
+            <thead>
+              <tr>
+                <th *ngFor="let item of filtroCabecalho()" class="cursor-pointer"
+                    (click)="sort(item.label)">
+                  {{item.nome}}
+                  <span *ngIf="key === item.label">{{!reverse ? '▲' : '▼'}}</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bula of bulas ">
+                <th *ngIf="cabecalho[0].exibe">{{bula.nomeProduto}}</th>
+                <td *ngIf="cabecalho[1].exibe">{{bula.razaoSocial}}</td>
+                <td *ngIf="cabecalho[2].exibe">{{bula.data | date: 'dd/MM/yyyy'}}</td>
+                <td *ngIf="cabecalho[3].exibe">
+                  <a href="https://consultas.anvisa.gov.br/api/consulta/medicamentos/arquivo/bula/parecer/{{bula.idBulaPacienteProtegido}}/?Authorization="
+                     class="btn btn-info"><span class="glyphicon glyphicon-save"></span></a>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <button class="btn blue dropdown-toggle"
+                            title="Ações da OS"
+                            data-toggle="dropdown"
+                            data-hover="dropdown"
+                            data-close-others="true">
+                      Ações
+                    </button>
+                    <ul class="dropdown-menu pull-right top-menu">
+                      <li>
+                        <a>
+                          Editar
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--<div class="row dataTables_paginate paging_bootstrap_number">
+      <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior"
+                           nextLabel="Próximo"></pagination-controls>
+    </div>-->
+  </div>
+</div>
