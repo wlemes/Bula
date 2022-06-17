@@ -1,0 +1,31 @@
+<h1 id="tableLabel">Bula Digital</h1>
+
+<p>A bula digital é responsável por simplificar e compartilhar as informações mais relevantes dos medicamentos, de maneira simples e de fácil acesso. </p>
+
+<p *ngIf="!bulas"><em>Loading...</em></p>
+<div>
+  <input placeholder="Insira o nome do medicamento..." [(ngModel)]="pesquisa" />
+  <button (click)="pesquisar()"> pesqusiar</button>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="bulas">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Fabricante</th>
+      <th>Data</th>
+      <th>Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bula of bulas">
+      <td>{{ bula.nomeProduto }}</td>
+      <td>{{ bula.razaoSocial }}</td>
+      <td>{{ bula.data }}</td>
+      <td>
+        <a href="https://consultas.anvisa.gov.br/api/consulta/medicamentos/arquivo/bula/parecer/{{bula.idBulaPacienteProtegido}}/?Authorization="
+           class="btn btn-info"><span class="glyphicon glyphicon-save"></span>Download</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
