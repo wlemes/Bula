@@ -1,5 +1,11 @@
+
 <div class="portlet light borded">
   <div class="portlet-title">
+    <div class="caption">
+      <i class="icon-settings font-dark"></i>
+      <span class="caption-subject font-green-haze bold uppercase">Bula Digital</span>
+      <span class="caption-helper"> listagem geral</span>
+    </div>
     <div class="actions">
       <div class="input-icon pull-right">
         <i class="icon-magnifier"></i>
@@ -9,47 +15,30 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <hr />
-    </div>
-  </div>
+
+
   <!--<div class="form-actions">
-    <div class="dt-buttons pull-left">
-      <a class="dt-button buttons-pdf buttons-html5 btn green btn-outline" tabindex="0"
-         aria-controls="sample_1" data-toggle="modal" data-target="#gerar-pdf"
-         (click)="pdf()"><span>PDF</span></a>
-      <a class="dt-button buttons-excel buttons-html5 btn yellow btn-outline" tabindex="0"
-         aria-controls="sample_1"
-         (click)="excel(cabecalho, preparaListaExcel(listaOrdemServico), 'Ordem')">
-        <span>Excel</span>
-      </a>
-      <div class="btn-group">
-        <a class="btn dark btn-outline dropdown-toggle" tabindex="0"
-           aria-controls="sample_1" data-toggle="dropdown" data-hover="dropdown"
-           data-close-others="true"><span>Colunas</span></a>
-        <ul class="dropdown-menu pull-right">
-          <li *ngFor="let item of cabecalho">
-            <a (click)="item.exibe = !item.exibe; $event.stopPropagation();">
-              {{item.nome}}
-              <i *ngIf="item.exibe" class="fa fa-check"></i>
-            </a>
-          </li>
-        </ul>
+    <div class="input-group col-md-6">
+      <input type="text" class="form-control" placeholder="Insira o nome do medicamento..." [(ngModel)]="pesquisa" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button" (click)="pesquisar()">Button</button>
       </div>
-    </div>
-    <div class="pull-right btn-group">
-      <button type="button" class="btn font-white" style="background: #059a19" [routerLink]="['new']">
-        Nova OS
-      </button>
-      <button type="button" class="btn default" [routerLink]="['ordem-servico']">Cancelar</button>
     </div>
   </div>-->
   <div class="portlet-body">
     <div class="col-md-12">
+
       <div class="dataTables_wrapper no-footer">
         <div class="row">
-          <div class="col-md-6 col-sm-12">
+
+          <div class="input-group col-md-6">
+            <input type="text" class="form-control" placeholder="Insira o nome do medicamento..." [(ngModel)]="pesquisa" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button" (click)="pesquisar()">Button</button>
+            </div>
+          </div>
+
+          <div class="col-md-6 float-right">
             <div class="dataTables_length">
               <label>Resultados por página:</label>
               <select name="itensPorPagina"
@@ -81,31 +70,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let bula of bulas ">
+              <tr *ngFor="let bula of bulas">
                 <th *ngIf="cabecalho[0].exibe">{{bula.nomeProduto}}</th>
                 <td *ngIf="cabecalho[1].exibe">{{bula.razaoSocial}}</td>
                 <td *ngIf="cabecalho[2].exibe">{{bula.data | date: 'dd/MM/yyyy'}}</td>
                 <td *ngIf="cabecalho[3].exibe">
                   <a href="https://consultas.anvisa.gov.br/api/consulta/medicamentos/arquivo/bula/parecer/{{bula.idBulaPacienteProtegido}}/?Authorization="
-                     class="btn btn-info"><span class="glyphicon glyphicon-save"></span></a>
-                </td>
-                <td>
-                  <div class="btn-group">
-                    <button class="btn blue dropdown-toggle"
-                            title="Ações da OS"
-                            data-toggle="dropdown"
-                            data-hover="dropdown"
-                            data-close-others="true">
-                      Ações
-                    </button>
-                    <ul class="dropdown-menu pull-right top-menu">
-                      <li>
-                        <a>
-                          Editar
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                     class="btn btn-info"><span class="glyphicon glyphicon-save"></span>Download</a>
                 </td>
               </tr>
             </tbody>

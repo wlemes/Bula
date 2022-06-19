@@ -10,13 +10,14 @@ export class HomeComponent {
   public http: HttpClient;
   public pesquisa: string;
 
+  filter: string;
   key = '';
   reverse = false;
 
   cabecalho = [
     { nome: 'Nome', exibe: true, label: 'nomeProduto' },
     { nome: 'Fabricante', exibe: true, label: 'razaoSocial' },
-    { nome: 'Data', exibe: true, label: 'data' },
+    { nome: 'Data de Publicação', exibe: true, label: 'data' },
     { nome: 'Download', exibe: true, label: '' }];
 
   itensPorPagina: number = 10;
@@ -27,8 +28,12 @@ export class HomeComponent {
 
   pesquisar() {
     console.log("pesquisar ", this.pesquisa);
-    this.http.get<Bula>(`https://bula.vercel.app/pesquisar?nome=${this.pesquisa}&pagina=1`).subscribe(result => {
+
+    this.http.get<Bula>(`https://bula.vercel.app/pesquisar?nome=${this.pesquisa}&pagina`).subscribe(result => {
       this.bulas = result.content;
+/*      this.bulas.length = result.totalElements;*/
+
+      console.log('resultTOTALELEMENT', result.totalElements);
       console.log('result', result);
     }, error => console.error(error));
   }
