@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { categoriaComponent } from './consulta-categoria/consulta-categoria.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PipesModule } from './pipes-module';
+import { PrivacidadeComponent } from './privacidade/privacidade.component';
 
 
 @NgModule({
@@ -26,9 +26,9 @@ import { PipesModule } from './pipes-module';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent,
     categoriaComponent,
-    BugReportComponent
+    BugReportComponent,
+    PrivacidadeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,6 +38,8 @@ import { PipesModule } from './pipes-module';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'consulta-categoria', component: categoriaComponent },
       { path: 'bug-report', component: BugReportComponent },
+      { path: 'privacidade', component: PrivacidadeComponent },
+
       /*{ path: 'fetch-data', component: FetchDataComponent },*/
     ]),
     BrowserAnimationsModule,

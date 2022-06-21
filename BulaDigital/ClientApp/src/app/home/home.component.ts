@@ -23,7 +23,8 @@ export class HomeComponent {
     { nome: 'Nome', exibe: true, label: 'nomeProduto' },
     { nome: 'Fabricante', exibe: true, label: 'razaoSocial' },
     { nome: 'Data de Publicação', exibe: true, label: 'data' },
-    { nome: 'Download', exibe: true, label: '' }];
+    { nome: 'Bula Paciente', exibe: true, label: '' },
+    { nome: 'Bula Profissional', exibe: true, label: '' }];
 
   pagina: number = 1;
   total: number = 0;
