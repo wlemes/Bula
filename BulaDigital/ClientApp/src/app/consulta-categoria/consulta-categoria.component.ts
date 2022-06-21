@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 export class categoriaComponent {
   public bulas: Content[] = [];
   public http: HttpClient;
-  public numCategoria: number;
+  public numCategoria: number = 0;
 
   key = '';
   reverse = false;
