@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { categoriaComponent } from './consulta-categoria/consulta-categoria.component';
+import { BugReportComponent } from './bug-report/bug-report.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -25,6 +27,8 @@ import { PipesModule } from './pipes-module';
     NavMenuComponent,
     HomeComponent,
     FetchDataComponent,
+    categoriaComponent,
+    BugReportComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,12 +36,15 @@ import { PipesModule } from './pipes-module';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'consulta-categoria', component: categoriaComponent },
+      { path: 'bug-report', component: BugReportComponent },
       /*{ path: 'fetch-data', component: FetchDataComponent },*/
     ]),
     BrowserAnimationsModule,
     PipesModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule,
+    Ng2SearchPipeModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
