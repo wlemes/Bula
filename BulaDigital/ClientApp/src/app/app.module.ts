@@ -11,6 +11,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { categoriaComponent } from './consulta-categoria/consulta-categoria.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './footer/footer.component';
 
 
 //import { AlertModule } from 'ngx-alerts';
@@ -28,7 +29,8 @@ import { PipesModule } from './pipes-module';
     HomeComponent,
     FetchDataComponent,
     categoriaComponent,
-    BugReportComponent
+    BugReportComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
