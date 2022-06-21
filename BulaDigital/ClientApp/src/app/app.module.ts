@@ -11,6 +11,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { categoriaComponent } from './consulta-categoria/consulta-categoria.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './footer/footer.component';
 
 
 //import { AlertModule } from 'ngx-alerts';
@@ -21,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PipesModule } from './pipes-module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FetchDataComponent,
     categoriaComponent,
     BugReportComponent,
+    PrivacidadeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,6 +42,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'consulta-categoria', component: categoriaComponent },
       { path: 'bug-report', component: BugReportComponent },
+      { path: 'privacidade', component: PrivacidadeComponent },
+
       /*{ path: 'fetch-data', component: FetchDataComponent },*/
     ]),
     BrowserAnimationsModule,

@@ -1,6 +1,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-<header>
-  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+<header class="header">
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+    <!-- <div><img src="../assests/images/logo.png"></div> -->
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">Bula Digital</a>
       <button class="navbar-toggler"
@@ -18,14 +19,18 @@
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link" style="color:#ffff" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/consulta-categoria']">Categorias</a>
+            <a class="nav-link" style="color:#ffff" [routerLink]="['/consulta-categoria']">Categorias</a>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/bug-report']">Reportar Bug</a>
+            <a class="nav-link" style="color:#ffff" [routerLink]="['/bug-report']">Reportar Bug</a>
+          </li>
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link" style="color:#ffff" [routerLink]="['/privacidade']">Privacidade</a>
           </li>
         </ul>
       </div>

@@ -3,11 +3,14 @@ import { Component, Inject } from '@angular/core';
 import { retry } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  public bulas: Content[] = [];
 
   public bulas: Content[] = [];
   public http: HttpClient;
