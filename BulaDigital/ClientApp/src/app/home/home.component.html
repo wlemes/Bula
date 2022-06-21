@@ -1,0 +1,84 @@
+<div class="portlet light borded">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="icon-settings font-dark"></i>
+      <span class="caption-subject font-green-haze bold uppercase">Consulta por nome</span>
+      <!-- <span class="caption-helper"> Consulta por nome</span> -->
+    </div>
+    <div class="actions">
+      <div class="input-icon pull-right">
+        <i class="icon-magnifier"></i>
+        <input type="text" class="form-control input-circle" placeholder="Filtrar...." name="filter"
+               [(ngModel)]="filter">
+      </div>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="input-group col-md-12">
+            <input type="text" class="form-control" placeholder="Insira o nome do medicamento..." [(ngModel)]="pesquisa" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button" (click)="pesquisar()">Pesquisar</button>
+              <!-- <button
+              (click)="getMoreInfo(25351267345200858)"
+              class="btn btn-info">
+            </button>  -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+        </div>
+      </div> 
+      <div class="dataTables_wrapper no-footer">
+        <table class="table table-striped table-hover no-footer" role="grid">
+          <thead>
+            <tr>
+              <th *ngFor="let item of filtroCabecalho()" class="cursor-pointer"
+                  (click)="sort(item.label)">
+                {{item.nome}}
+                <span *ngIf="key === item.label">{{!reverse ? '▲' : '▼'}}</span>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let bula of bulas | sortByPipe: key: reverse | filter:filter | paginate: {
+                itemsPerPage: itensPorPagina,
+                currentPage: pagina,
+                totalItems: total
+              };">
+              <th *ngIf="cabecalho[0].exibe" (click)="getMoreInfo(bula.numProcesso)">{{bula.nomeProduto}}</th>
+              <td *ngIf="cabecalho[1].exibe">{{bula.razaoSocial}}</td>
+              <td *ngIf="cabecalho[2].exibe">{{bula.data | date: 'dd/MM/yyyy'}}</td>
+              <td *ngIf="cabecalho[3].exibe">
+                <a href="https://consultas.anvisa.gov.br/api/consulta/medicamentos/arquivo/bula/parecer/{{bula.idBulaPacienteProtegido}}/?Authorization="
+                   class="btn btn-info"><span class="glyphicon glyphicon-save"></span>Download</a>
+              </td>
+              <td *ngIf="cabecalho[4].exibe">
+                <a href="https://consultas.anvisa.gov.br/api/consulta/medicamentos/arquivo/bula/parecer/{{bula.idBulaProfissionalProtegido}}/?Authorization="
+                   class="btn btn-info"><span class="glyphicon glyphicon-save"></span>Download</a>
+              </td>
+            </tr>              
+          </tbody>
+          <!-- <tbody *ngIf="mostrar">
+             <tr *ngFor="let more of apresentacao | sortByPipe: key: reverse | filter: filter">
+              <th *ngIf="cabecalhoMorenfo[0].exibe">{{more.codigoProduto}}</th>
+            </tr>
+          </tbody> -->
+        </table>
+      </div>
+
+    </div>
+    <div class="row dataTables_paginate paging_bootstrap_number">
+      <pagination-controls (pageChange)="pageChange($event)" autoHide="true" previousLabel="Anterior"
+                           nextLabel="Próximo"></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>
