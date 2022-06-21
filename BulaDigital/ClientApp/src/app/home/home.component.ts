@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
+import { retry } from 'rxjs/operators'
+
+
 
 @Component({
   selector: 'app-home',
@@ -7,8 +10,10 @@ import { Component, Inject } from '@angular/core';
 })
 export class HomeComponent {
   public bulas: Content[] = [];
+
   public http: HttpClient;
   public pesquisa: string;
+  public totalElements: string;
 
   filter: string;
   key = '';
@@ -20,22 +25,28 @@ export class HomeComponent {
     { nome: 'Data de Publicação', exibe: true, label: 'data' },
     { nome: 'Download', exibe: true, label: '' }];
 
+  pagina: number = 1;
+  total: number = 0;
   itensPorPagina: number = 10;
+  loading = false;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
   }
 
   pesquisar() {
-    console.log("pesquisar ", this.pesquisa);
 
-    this.http.get<Bula>(`https://bula.vercel.app/pesquisar?nome=${this.pesquisa}&pagina`).subscribe(result => {
-      this.bulas = result.content;
-/*      this.bulas.length = result.totalElements;*/
+    this.loading = true;
 
-      console.log('resultTOTALELEMENT', result.totalElements);
-      console.log('result', result);
-    }, error => console.error(error));
+    this.http.get<Bula>(`https://bula.vercel.app/pesquisar?nome=${this.pesquisa}&pagina=${this.pagina}`)
+      .pipe(retry(10))
+      .subscribe(result => {
+        this.bulas = result.content;
+        this.total = result.totalElements;
+
+      }, error => console.error(error), () => {
+        this.loading = false
+      });
   }
 
 
@@ -45,6 +56,11 @@ export class HomeComponent {
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
+  }
+
+  pageChange(page: number) {
+    this.pagina = page;
+    this.pesquisar();
   }
 }
 
@@ -60,6 +76,7 @@ export interface Content {
   numProcesso: string;
   idBulaPacienteProtegido: string;
   idBulaProfissionalProtegido: string;
+  totalElements: string;
 }
 
 export interface Bula {

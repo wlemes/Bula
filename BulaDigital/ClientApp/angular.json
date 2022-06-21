@@ -34,7 +34,7 @@
               "src/css/custom-vertical.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["./no"]
           },
           "configurations": {
             "production": {

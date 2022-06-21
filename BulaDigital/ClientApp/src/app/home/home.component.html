@@ -27,7 +27,7 @@
             </div>
           </div>
 
-          <div class="dataTables_length float-right">
+          <!--<div class="dataTables_length float-right">
             <label>Resultados por página:</label>
             <select name="itensPorPagina"
                     class="form-control input-sm input-xsmall input-inline input-circle"
@@ -38,7 +38,7 @@
               <option value="20">20</option>
               <option value="-1">All</option>
             </select>
-          </div>
+          </div>-->
         </div>
       </div>
       <div class="row">
@@ -57,7 +57,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let bula of bulas | sortByPipe: key: reverse | filter:filter | paginate: { itemsPerPage: itensPorPagina, currentPage: p };">
+            <tr *ngFor="let bula of bulas | sortByPipe: key: reverse | filter:filter | paginate: {
+                itemsPerPage: itensPorPagina,
+                currentPage: pagina,
+                totalItems: total
+              };">
               <th *ngIf="cabecalho[0].exibe">{{bula.nomeProduto}}</th>
               <td *ngIf="cabecalho[1].exibe">{{bula.razaoSocial}}</td>
               <td *ngIf="cabecalho[2].exibe">{{bula.data | date: 'dd/MM/yyyy'}}</td>
@@ -72,8 +76,21 @@
 
     </div>
     <div class="row dataTables_paginate paging_bootstrap_number">
-      <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior"
-                           nextLabel="Próximo"></pagination-controls>
+      <pagination-controls (pageChange)="pageChange($event)" autoHide="true" previousLabel="Anterior"
+                       nextLabel="Próximo"></pagination-controls>
+      <!--<pagination-controls id="some_id"
+                           (pageChange)="getPage($event)"
+                           (pageBoundsCorrection)="pageChanged($event)"
+                           maxSize="9"
+                           directionLinks="true"
+                           autoHide="true"
+                           responsive="true"
+                           previousLabel="Previous"
+                           nextLabel="Next"
+                           screenReaderPaginationLabel="Pagination"
+                           screenReaderPageLabel="page"
+                           screenReaderCurrentLabel="You're on page">
+      </pagination-controls>-->
     </div>
   </div>
 </div>

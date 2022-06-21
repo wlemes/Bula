@@ -37,7 +37,8 @@ import { PipesModule } from './pipes-module';
     BrowserAnimationsModule,
     PipesModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule,
+    Ng2SearchPipeModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
