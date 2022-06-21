@@ -3,8 +3,8 @@
   <div class="portlet-title">
     <div class="caption">
       <i class="icon-settings font-dark"></i>
-      <span class="caption-subject font-green-haze bold uppercase">Bula Digital</span>
-      <span class="caption-helper"> listagem geral</span>
+      <span class="caption-subject font-green-haze bold uppercase">Consulta por nome</span>
+      <!-- <span class="caption-helper"> Consulta por nome</span> -->
     </div>
     <div class="actions">
       <div class="input-icon pull-right">
@@ -57,12 +57,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let bula of bulas | sortByPipe: key: reverse | filter:filter | paginate: { itemsPerPage: itensPorPagina, currentPage: p };">
-              <th *ngIf="cabecalho[0].exibe">{{bula.nomeProduto}}</th>
+            <tr *ngFor="let bula of bulas | sortByPipe: key: reverse | filter:filter | paginate: { itemsPerPage: itensPorPagina, currentPage: p }">
+              <th *ngIf="cabecalho[0].exibe">{{bula.nomeProduto.toUpperCase()}}</th>
               <td *ngIf="cabecalho[1].exibe">{{bula.razaoSocial}}</td>
               <td *ngIf="cabecalho[2].exibe">{{bula.data | date: 'dd/MM/yyyy'}}</td>
               <td *ngIf="cabecalho[3].exibe">
                 <a href="https://consultas.anvisa.gov.br/api/consulta/medicamentos/arquivo/bula/parecer/{{bula.idBulaPacienteProtegido}}/?Authorization="
+                   class="btn btn-info"><span class="glyphicon glyphicon-save"></span>Download</a>
+              </td>
+              <td *ngIf="cabecalho[4].exibe">
+                <a href="https://consultas.anvisa.gov.br/api/consulta/medicamentos/arquivo/bula/parecer/{{bula.idBulaProfissionalProtegido}}/?Authorization="
                    class="btn btn-info"><span class="glyphicon glyphicon-save"></span>Download</a>
               </td>
             </tr>
@@ -72,7 +76,7 @@
 
     </div>
     <div class="row dataTables_paginate paging_bootstrap_number">
-      <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior"
+      <pagination-controls (pageChange)="getPage($event)" autoHide="true" previousLabel="Anterior"
                            nextLabel="Próximo"></pagination-controls>
     </div>
   </div>
