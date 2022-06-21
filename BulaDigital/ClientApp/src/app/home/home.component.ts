@@ -11,8 +11,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class HomeComponent {
   public bulas: Content[] = [];
-
-  public bulas: Content[] = [];
   public http: HttpClient;
   public pesquisa: string;
   public totalElements: string;
