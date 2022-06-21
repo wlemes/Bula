@@ -4,12 +4,12 @@
     <div class="caption">
       <i class="icon-settings font-dark"></i>
       <span class="caption-subject font-green-haze bold uppercase">Bula Digital</span>
-      <span class="caption-helper"> listagem geral</span>
+      <span class="caption-helper"> Listagem geral</span>
     </div>
     <div class="actions">
       <div class="input-icon pull-right">
         <i class="icon-magnifier"></i>
-        <input type="text" class="form-control input-circle" placeholder="Filtrar...." name="filter"
+        <input type="text" class="form-control input-circle" placeholder="Filtrar..." name="filter"
                [(ngModel)]="filter">
       </div>
     </div>
@@ -20,27 +20,32 @@
       <div class="row">
         <div class="col-md-12">
 
-          <div class="input-group col-md-6">
+          <div class="input-group col-md-8">
             <input type="text" class="form-control" placeholder="Insira o nome do medicamento..." [(ngModel)]="pesquisa" aria-describedby="basic-addon2">
             <div class="input-group-append">
               <button class="btn btn-primary" type="button" (click)="pesquisar()">Pesquisar</button>
             </div>
-          </div>
 
-          <div class="dataTables_length float-right">
-            <label>Resultados por página:</label>
-            <select name="itensPorPagina"
-                    class="form-control input-sm input-xsmall input-inline input-circle"
-                    [(ngModel)]="itensPorPagina">
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-              <option value="-1">All</option>
-            </select>
-          </div>
+            <div class="dataTables_length float-right" style="margin-left:45px">
+              <label 
+              style="margin-right: 5px;
+                     font-size: 15px;">
+              Resultados por página:
+            </label>
+              <select name="itensPorPagina"
+                      class="form-control input-sm input-xsmall input-inline input-circle"
+                      [(ngModel)]="itensPorPagina">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="-1">All</option>
+              </select>
+            </div>
+          </div>          
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="col-md-6 col-sm-12">
         </div>
