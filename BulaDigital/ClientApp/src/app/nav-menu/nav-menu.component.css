@@ -1,5 +1,5 @@
 .header{
-  background-color: #44B6AE;
+  background-color: #ffff;
 }
 
 a.navbar-brand {
@@ -9,7 +9,7 @@ a.navbar-brand {
   font-family: 'Roboto', sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
-  color: #ffff;
+  color: #44B6AE;;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   text-decoration: none;
@@ -19,11 +19,11 @@ a.navbar-brand {
 
 a.nav-link{
   font-size: 15px;
-  color: #ffff;
+  color: #44B6AE;
 }
 
 a.nav-link:hover{
-  color: #ffff;
+  color: black;
   font-size: 17px;
   text-decoration:underline;
 }
@@ -41,3 +41,6 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+img{
+  width: 55px;
+}
