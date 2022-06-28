@@ -7,9 +7,12 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
+import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { categoriaComponent } from './consulta-categoria/consulta-categoria.component';
+import { PrivacidadeComponent } from './privacidade/privacidade.component'
 import { BugReportComponent } from './bug-report/bug-report.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './footer/footer.component';
 
 
 //import { AlertModule } from 'ngx-alerts';
@@ -18,7 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PipesModule } from './pipes-module';
-import { PrivacidadeComponent } from './privacidade/privacidade.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AlertModule } from 'ngx-alerts';
 
 
 @NgModule({
@@ -26,9 +30,11 @@ import { PrivacidadeComponent } from './privacidade/privacidade.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
+    FetchDataComponent,
     categoriaComponent,
     BugReportComponent,
-    PrivacidadeComponent
+    PrivacidadeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,7 +51,9 @@ import { PrivacidadeComponent } from './privacidade/privacidade.component';
     BrowserAnimationsModule,
     PipesModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgxSpinnerModule,
+    AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),
 
   ],
   providers: [],

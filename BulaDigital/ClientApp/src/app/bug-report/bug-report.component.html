@@ -1,29 +1,33 @@
 <!-- bug report -->
 <div class="portlet light borded">
-    <div class="portlet-title">
-      <div class="caption">
-        <i class="icon-settings font-dark"></i>
-        <span class="caption-subject font-green-haze bold uppercase"> Reporte um bug</span>
-        </div>
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="icon-settings font-dark"></i>
+      <span class="caption-subject font-black-haze bold uppercase"> Reporte um bug</span>
     </div>
-    <div class="portlet-body">
-        <!-- bug report form -->
-        <form class="form-horizontal" role="form" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label class="col-md-3 control-label">Descrição</label>
-                <div class="col-md-9">
-                    <textarea class="form-control" rows="3" placeholder="Descrição do problema" [(ngModel)]="descricao" name="descricao"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Anexo de Imagem</label>
-                <div class="col-md-9">
-                    <input type="file" [(ngModel)]="arquivo" name="arquivo">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label"> </label>
-                <div class="col-md-9">
-                    <button [disabled]="submitted" class="btn btn-primary">Enviar</button>
-                </div>
-            </div>
+  </div>
+  <div class="portlet-body">
+    <!-- bug report form -->
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label class="col-md-3 control-label">Descrição</label>
+        <div class="col-md-9">
+          <textarea class="form-control" rows="3" placeholder="Descrição do problema" [(ngModel)]="descricao" name="descricao"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">Anexo de Imagem</label>
+        <div class="col-md-9">
+          <input type="file" [(ngModel)]="arquivo" name="arquivo">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label"> </label>
+        <div class="col-md-9">
+          <button class="btn btn-primary" (click)="enviar()">Enviar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -3,7 +3,7 @@
   <div class="portlet-title">
     <div class="caption">
       <i class="icon-settings font-dark"></i>
-      <span class="caption-subject font-green-haze bold uppercase">Consulta por nome</span>
+      <span class="caption-subject font-black-haze bold uppercase">Consulta por nome</span>
       <!-- <span class="caption-helper"> Consulta por nome</span> -->
     </div>
     <div class="actions">
@@ -23,6 +23,10 @@
             <input type="text" class="form-control" placeholder="Insira o nome do medicamento..." [(ngModel)]="pesquisa" aria-describedby="basic-addon2">
             <div class="input-group-append">
               <button class="btn btn-primary" type="button" (click)="pesquisar()">Pesquisar</button>
+              <!-- <button
+              (click)="getMoreInfo(25351267345200858)"
+              class="btn btn-info">
+            </button>  -->
             </div>
           </div>
         </div>
@@ -43,6 +47,7 @@
               </th>
             </tr>
           </thead>
+
           <tbody>
             <tr *ngFor="let bula of bulas | sortByPipe: key: reverse | filter:filter | paginate: {
                 itemsPerPage: itensPorPagina,
@@ -62,13 +67,20 @@
               </td>
             </tr>
           </tbody>
+          <!-- <tbody *ngIf="mostrar">
+             <tr *ngFor="let more of apresentacao | sortByPipe: key: reverse | filter: filter">
+              <th *ngIf="cabecalhoMorenfo[0].exibe">{{more.codigoProduto}}</th>
+            </tr>
+          </tbody> -->
         </table>
       </div>
 
     </div>
-    <div class="row dataTables_paginate paging_bootstrap_number">
+    <div class="row dataTables_paginate paging_bootstrap_number" style="align-items: center; justify-content: center;"> 
       <pagination-controls (pageChange)="pageChange($event)" autoHide="true" previousLabel="Anterior"
                            nextLabel="Próximo"></pagination-controls>
     </div>
   </div>
 </div>
+<br/> <br/> <br/>
+<ngx-spinner></ngx-spinner>

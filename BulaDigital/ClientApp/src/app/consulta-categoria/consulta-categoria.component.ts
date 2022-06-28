@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-consulta-categoria',
@@ -15,8 +16,9 @@ export class categoriaComponent {
   key = '';
   reverse = false;
   p: number = 1;
+  loading: boolean = false;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(http: HttpClient, private spinner: NgxSpinnerService , @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
   }
 
@@ -33,11 +35,21 @@ export class categoriaComponent {
   itensPorPagina: number = 10;
 
   listarMedicamentos() {
+    this.loading = true;
+    this.spinner.show();
+
     this.http.get<Bula>(`https://bula.vercel.app/medicamentos?categoria=${this.numCategoria}&pagina=${this.pagina}`).subscribe(result => {
       this.bulas = result.content;
       this.total = result.totalElements;
       // this.bulas.length = result.totalElements;
-    }, error => console.error(error));
+    }, error => {
+      console.log(error);
+    }
+    ).add(() => {
+      this.loading = false;
+      this.spinner.hide();
+    }
+    );
   }
 
   filtroCabecalho(): any[] {

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
-import { retry } from 'rxjs/operators'
+import { retry } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -10,10 +11,10 @@ import { retry } from 'rxjs/operators'
 })
 export class HomeComponent {
   public bulas: Content[] = [];
-
   public http: HttpClient;
   public pesquisa: string;
   public totalElements: string;
+  public apr: Medicamento[] = [];
 
   filter: string;
   key = '';
@@ -26,30 +27,57 @@ export class HomeComponent {
     { nome: 'Bula Paciente', exibe: true, label: '' },
     { nome: 'Bula Profissional', exibe: true, label: '' }];
 
+  cabecalhoMorenfo = [
+    { nome: 'Apresentação', exibe: true, label: 'apresentacao' },
+    { nome: 'Vias de Administração', exibe: true, label: 'viasAdministracao' },
+    { nome: 'IFA Único', exibe: true, label: 'ifaUnico' },
+    { nome: 'Conservação', exibe: true, label: 'conservacao' },
+    { nome: 'Restrição de Prescrição', exibe: true, label: 'restricaoPrescricao' },
+    { nome: 'Restrição de Uso', exibe: true, label: 'restricaoUso' },
+    { nome: 'Destinação', exibe: true, label: 'destinacao' },
+    { nome: 'Restrição de Hospitais', exibe: true, label: 'restricaoHospitais' },
+    { nome: 'Tarja', exibe: true, label: 'tarja' },
+    { nome: 'Ativa', exibe: true, label: 'ativa' }
+  ]
+
   pagina: number = 1;
   total: number = 0;
+  numProcesso: string;
   itensPorPagina: number = 10;
   loading = false;
+  numero: number = 0;
+  mostrar: boolean = false;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(http: HttpClient, private spinner: NgxSpinnerService, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
   }
 
   pesquisar() {
 
     this.loading = true;
+    this.spinner.show();
 
     this.http.get<Bula>(`https://bula.vercel.app/pesquisar?nome=${this.pesquisa}&pagina=${this.pagina}`)
       .pipe(retry(10))
       .subscribe(result => {
         this.bulas = result.content;
         this.total = result.totalElements;
+        this.numProcesso = result.content[this.numero].numProcesso;
 
       }, error => console.error(error), () => {
-        this.loading = false
+        this.spinner.hide();
       });
   }
 
+  getMoreInfo(numProcesso: string) {
+    this.http.get<Apresentacoes>(`https://bula.vercel.app/medicamento/${numProcesso}`)
+      .pipe(retry(10))
+      .subscribe(result => {
+        this.apr = result.content;
+        this.mostrar = true;
+        console.log(this.apr);
+      });
+  }
 
   filtroCabecalho(): any[] {
     return this.cabecalho.filter(c => c.exibe === true);
@@ -78,6 +106,86 @@ export interface Content {
   idBulaPacienteProtegido: string;
   idBulaProfissionalProtegido: string;
   totalElements: string;
+}
+
+export interface Medicamento {
+  codigo: number;
+  apresentacao: string;
+  formasFarmaceuticas: string[];
+  numero: number;
+  tonalidade: string;
+  dataPublicacao: string;
+  validade: string;
+  tipoValidade: string;
+  registro: string;
+  principiosAtivos: string[];
+  complemento: string;
+  embalagemPrimaria: Embalagem;
+  embalagemSecundaria: Embalagem;
+  embalagemSecundariaTodas: Embalagem[];
+  envoltorios: Envoltorio[];
+  acessorios: Acessorio[];
+  acondicionamento: string;
+  marcas: Marca[];
+  fabricantesNacionais: Fabricante[];
+  fabricantesInternacionais: Fabricante[];
+  viasAdministracao: string[];
+  ifaUnico: boolean;
+  conservacao: string[];
+  restricaoPrescricao: string[];
+  restricaoUso: string[];
+  destinacao: string[];
+  restricaoHospitais: string;
+  tarja: string;
+  medicamentoReferencia: string;
+  apresentacaoFracionada: string;
+  dataVencimentoRegistro: string;
+  ativa: boolean;
+  inativa: boolean;
+  emAnalise: boolean;
+}
+
+export interface Apresentacoes {
+  content: Medicamento[];
+  apresentacao: string;
+  viasAdministracao: string[];
+  ifaUnico: boolean;
+  conservacao: string[];
+  restricaoPrescricao: string[];
+  restricaoUso: string[];
+  destinacao: string[];
+  restricaoHospitais: string;
+  tarja: string;
+  ativa: boolean;
+}
+
+export interface Embalagem {
+  tipo: string;
+  observacao: string;
+}
+
+export interface Envoltorio {
+  tipo: string;
+  observacao: string;
+}
+
+export interface Acessorio {
+  tipo: string;
+  observacao: string;
+}
+
+export interface Fabricante {
+  fabricante: string;
+  cnpj: string;
+  pais: string;
+  uf: string;
+  cidade: string;
+  etapaFabricacao: string;
+}
+
+export interface Marca {
+  tipo: string;
+  observacao: string;
 }
 
 export interface Bula {
