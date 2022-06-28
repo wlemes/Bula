@@ -12,19 +12,21 @@
       <div class="form-group">
         <label class="col-md-3 control-label">Descrição</label>
         <div class="col-md-9">
-          <textarea class="form-control" rows="3" placeholder="Descrição do problema" [(ngModel)]="descricao" name="descricao"></textarea>
+                                                                         <!-- colocar na linha de baixo: [(ngModel)]="descricao" name="descricao"-->
+          <textarea class="form-control" rows="3" placeholder="Descrição do problema"></textarea>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-3 control-label">Anexo de Imagem</label>
         <div class="col-md-9">
-          <input type="file" [(ngModel)]="arquivo" name="arquivo">
+          <!-- colocar na linha de baixo: [(ngModel)]="arquivo" name="arquivo"-->
+          <input type="file">
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-3 control-label"> </label>
         <div class="col-md-9">
-          <button class="btn btn-primary" (click)="enviar()">Enviar</button>
+          <button class="btn btn-primary">Enviar</button>
         </div>
       </div>
 

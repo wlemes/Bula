@@ -17,6 +17,7 @@ export class categoriaComponent {
   reverse = false;
   p: number = 1;
   loading: boolean = false;
+  filter: string;
 
   constructor(http: HttpClient, private spinner: NgxSpinnerService , @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
