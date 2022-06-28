@@ -22,6 +22,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PipesModule } from './pipes-module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AlertModule } from 'ngx-alerts';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     PipesModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),
 
   ],
   providers: [],
