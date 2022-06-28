@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -12,6 +11,7 @@ import { categoriaComponent } from './consulta-categoria/consulta-categoria.comp
 import { PrivacidadeComponent } from './privacidade/privacidade.component'
 import { BugReportComponent } from './bug-report/bug-report.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 
 
@@ -33,7 +33,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     categoriaComponent,
     BugReportComponent,
     PrivacidadeComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,8 +51,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     PipesModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    NgxSpinnerModule
-
+    NgxSpinnerModule,
+	ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
