@@ -1,5 +1,5 @@
 .header{
-  background-color: #ffff;
+  background-color: #44B6AE;
 }
 
 a.navbar-brand {
@@ -9,7 +9,7 @@ a.navbar-brand {
   font-family: 'Roboto', sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
-  color: #44B6AE;;
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   text-decoration: none;
@@ -19,7 +19,7 @@ a.navbar-brand {
 
 a.nav-link{
   font-size: 15px;
-  color: #44B6AE;
+  color: #fff;
 }
 
 a.nav-link:hover{
