@@ -12,13 +12,15 @@
 				<div class="col-md-9">
 					<textarea formControlName="message" class="form-control" rows="3"
 						placeholder="Descrição do problema"></textarea>
+					<span class="help-block" *ngIf="valido">
+						<strong>A descrição é obrigatória</strong></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label">Anexo de Imagem</label>
 				<div class="col-md-9">
-					<input (change)="onFileChange($event)" id="attachments" name="attachments" formControlName="attachments" type="file" accept="image/png, image/jpeg"
-						class="form-control">
+					<input id="attachments" name="attachments" formControlName="attachments" type="file"
+						accept="image/png, image/jpeg" class="form-control" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -28,3 +30,8 @@
 				</div>
 			</div>
 		</form>
+	</div>
+</div>
+<ng-template #content let-modal>
+</ng-template>
+<ngx-spinner></ngx-spinner>

@@ -6,7 +6,7 @@
     </div>
 
   </div>
-  <div class="row">
+  <div class="portlet-body">
     <div class="col-md-12">
       <select class="form-control" [(ngModel)]="numCategoria" (ngModelChange)="listarMedicamentos()">
         <option value="0" disabled selected>Selecione categoria</option>
@@ -53,17 +53,11 @@
         </table>
       </div>
     </div>
-    <div class="row dataTables_paginate paging_bootstrap_number" style="align-items: center; justify-content: center; align-self: center;">
+    <div class="row datatables_paginate paging_bootstrap_number" style="align-items: center; justify-content: center;"> 
       <pagination-controls (pageChange)="pageChange($event)" autoHide="true" previousLabel="Anterior"
                            nextLabel="Próximo"></pagination-controls>
     </div>
   </div>
-
-    <!--<div class="col-md-12">
-    <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior" nextLabel="Próximo">
-    </pagination-controls>
-  </div>-->
-
 </div>
 <br/><br/><br/>
 <ngx-spinner></ngx-spinner>
